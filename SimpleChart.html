@@ -1,0 +1,84 @@
+<html>
+<head>
+    <title>Kukua Weather Data</title>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   <script src="http://code.highcharts.com/highcharts.js"></script> 
+</head>
+<body>
+    <!-- The container div is used to contain the chart drawn using Highcharts library -->
+  <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    <script language="JavaScript">
+        $(document).ready(function() {
+            //title of the chart
+            var title = {
+                text: 'Monthly Average Temperature'
+            };
+            
+            //subtitle
+            var subtitle = {
+                text: 'Source: Kukua.cc'
+            };
+            
+            //The ticker to be displayed on X-Axis
+            var xAxis = {
+                categories: ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            };
+            
+            //The title, and plotted lines for the Y-axis
+            var yAxis = {
+                title: {
+                    text: 'Temperature (\xB0C)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            };
+            
+            //the suffix is to be added after value (y-axis)
+            var tooltip = {
+                valueSuffix: '\xB0C'
+            }
+            
+            //Legend to be displayed on the right side of the chart along with other properties
+            var legend = {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            };
+            
+            //The data to be displaed on the chart, Series is an array wherein each element represents a single line on the chart. On a future project the data will be pulled from a mySQL database. 
+            var series = [
+                {
+                    name: 'Dar es Salaam',
+                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                },
+                {
+                    name: 'Kinshasa',
+                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+                },
+                {
+                    name: 'Bukoba',
+                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                }  
+            ];
+            
+            //Building the json data, basically combining all the configurations
+            var json = {};
+            
+            json.title = title;
+            json.subtitle = subtitle;
+            json.xAxis = xAxis;
+            json.yAxis = yAxis;
+            json.tooltip = tooltip;
+            json.legend = legend;
+            json.series = series;
+            
+            //Draws the chart
+              $('#container').highcharts(json); 
+        });
+    </script>
+</body>
+</html>
